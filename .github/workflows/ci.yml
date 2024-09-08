@@ -69,9 +69,6 @@ jobs:
           echo "IMAGE_NAME=${IMAGE_NAME}" >> $GITHUB_ENV
           echo "COMMIT_ID=${COMMIT_ID}" >> $GITHUB_ENV
 
-      - name: Debug IMAGE_NAME
-        run: echo "IMAGE_NAME: ${{ env.IMAGE_NAME }}"
-
       # Step to create version.txt file in the public directory if it exists
       - name: Create version.txt with commit ID in public directory
         run: |
