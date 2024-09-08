@@ -1,17 +1,17 @@
 // src/utils/responseHandler.ts
 
-import { Response } from "express";
+import type { Response } from "express";
 
 export const successResponse = (
   res: Response,
   message: string,
-  data: any = {},
+  data: unknown = {},
   statusCode: number = 200
 ) => {
   res.status(statusCode).json({
     success: true,
     message,
-    data,
+    data
   });
 };
 
@@ -22,6 +22,6 @@ export const errorResponse = (
 ) => {
   res.status(statusCode).json({
     success: false,
-    message,
+    message
   });
 };

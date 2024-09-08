@@ -1,0 +1,10 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": ["javascript", "typescript"],
+  "eslint.options": {
+    "overrideConfigFile": "eslint.config.js"
+  },
+  "files.insertFinalNewline": true
+}

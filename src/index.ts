@@ -1,5 +1,3 @@
-// src/index.ts
-
 import express from "express";
 import mongoose from "mongoose";
 import routes from "@/routes";

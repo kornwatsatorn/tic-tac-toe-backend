@@ -6,7 +6,7 @@ import {
   handleRefreshToken,
   handleRegister,
   handleGetProfile,
-  handleUpdateProfile,
+  handleUpdateProfile
 } from "@/controllers/user.controller";
 
 import { requireAccessToken, requireAccessTokenRefresh } from "@/middlewares";
