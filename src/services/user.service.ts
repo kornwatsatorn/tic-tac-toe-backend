@@ -2,7 +2,7 @@
 
 import bcrypt from "bcryptjs";
 import User from "@/models/user.model";
-import { IUser } from "@/types/user";
+import type { IUser } from "@/types/user";
 import jwt from "jsonwebtoken";
 import config from "@/config/app";
 
@@ -32,8 +32,14 @@ export const registerUser = async (userData: IUser) => {
     await newUser.save();
 
     return getUserAccessToken(newUser);
-  } catch (error: any) {
-    throw new Error(error.message);
+  } catch (error) {
+    if (error instanceof Error) {
+      // Re-throw the error if it's already an instance of Error
+      throw error;
+    } else {
+      // If it's not an Error instance, create a new Error with the provided message
+      throw new Error("An unexpected error occurred.");
+    }
   }
 };
 
@@ -54,8 +60,14 @@ export const signInUser = async (email: string, password?: string) => {
     }
 
     return getUserAccessToken(user);
-  } catch (error: any) {
-    throw new Error(error.message);
+  } catch (error) {
+    if (error instanceof Error) {
+      // Re-throw the error if it's already an instance of Error
+      throw error;
+    } else {
+      // If it's not an Error instance, create a new Error with the provided message
+      throw new Error("An unexpected error occurred.");
+    }
   }
 };
 
@@ -71,8 +83,14 @@ export const refreshAccessToken = async (user: IUser | undefined) => {
     }
     // Generate new access token
     return getUserAccessToken(find);
-  } catch (error: any) {
-    throw new Error(error.message);
+  } catch (error) {
+    if (error instanceof Error) {
+      // Re-throw the error if it's already an instance of Error
+      throw error;
+    } else {
+      // If it's not an Error instance, create a new Error with the provided message
+      throw new Error("An unexpected error occurred.");
+    }
   }
 };
 
@@ -85,16 +103,23 @@ export const getProfile = async (user: IUser | undefined) => {
     if (!find) {
       throw new Error("User not found");
     }
-    const { password: _, ...userWithoutPassword } = find.toObject();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...userWithoutPassword } = find.toObject();
     return userWithoutPassword;
-  } catch (error: any) {
-    throw new Error(error.message);
+  } catch (error) {
+    if (error instanceof Error) {
+      // Re-throw the error if it's already an instance of Error
+      throw error;
+    } else {
+      // If it's not an Error instance, create a new Error with the provided message
+      throw new Error("An unexpected error occurred.");
+    }
   }
 };
 export const updateProfile = async (
   user: IUser | undefined,
   displayName: string | undefined,
-  displayImage: string | undefined
+  displayImage: string | undefined,
 ) => {
   try {
     if (displayName === undefined && displayImage === undefined) {
@@ -107,7 +132,7 @@ export const updateProfile = async (
     if (!find) {
       throw new Error("User not found");
     }
-    const _updateData: any = {};
+    const _updateData: { displayName?: string; displayImage?: string } = {};
     if (displayName !== undefined) {
       if (displayName.trim().length <= 0) {
         throw new Error("display name invalid");
@@ -118,14 +143,20 @@ export const updateProfile = async (
       _updateData.displayImage = displayImage;
     }
     await find.updateOne(_updateData);
-  } catch (error: any) {
-    throw new Error(error.message);
+  } catch (error) {
+    if (error instanceof Error) {
+      // Re-throw the error if it's already an instance of Error
+      throw error;
+    } else {
+      // If it's not an Error instance, create a new Error with the provided message
+      throw new Error("An unexpected error occurred.");
+    }
   }
 };
 
 const getUserAccessToken = (userData: IUser) => {
-  // Return user without the password
-  const { password: _, ...userWithoutPassword } = userData.toObject();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { password, ...userWithoutPassword } = userData.toObject();
 
   const accessToken = jwt.sign(userWithoutPassword, config.secretKey, {
     expiresIn: config.expiresIn,

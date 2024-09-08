@@ -1,5 +1,4 @@
-import { Request } from "express";
-import { IUser } from "@/types/user";
+import type { IUser } from "@/types/user";
 
 declare global {
   namespace Express {

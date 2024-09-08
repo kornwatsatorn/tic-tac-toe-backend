@@ -1,8 +1,6 @@
-// src/middleware/authMiddleware.ts
-
-import { Request, Response, NextFunction } from "express";
+import type { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { IUser } from "@/types/user";
+import type { IUser } from "@/types/user";
 import config from "@/config/app";
 import { errorResponse } from "@/utils/responseHandler";
 
@@ -10,7 +8,7 @@ import { errorResponse } from "@/utils/responseHandler";
 export const requireAccessToken = (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   // Get token from headers
   const authHeader = req.headers["authorization"];
@@ -38,7 +36,7 @@ export const requireAccessToken = (
 export const requireAccessTokenRefresh = (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   // Get token from headers
   const authHeader = req.headers["authorization"];
