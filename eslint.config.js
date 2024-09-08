@@ -4,7 +4,7 @@ const tsParser = require("@typescript-eslint/parser");
 module.exports = [
   // General settings for all files
   {
-    ignores: ["node_modules/**"],
+    ignores: ["node_modules/**"]
   },
   // TypeScript specific settings
   {
@@ -15,11 +15,11 @@ module.exports = [
         ecmaVersion: "latest",
         sourceType: "module",
         project: "./tsconfig.json", // Adjust this path if your tsconfig.json is located elsewhere
-        tsconfigRootDir: __dirname,
-      },
+        tsconfigRootDir: __dirname
+      }
     },
     plugins: {
-      "@typescript-eslint": tsPlugin,
+      "@typescript-eslint": tsPlugin
     },
     rules: {
       ...tsPlugin.configs.recommended.rules,
@@ -30,7 +30,8 @@ module.exports = [
       "@typescript-eslint/no-empty-function": "warn", // Warns against empty functions
       // "no-console": ["warn", { allow: ["warn", "error"] }], // Allow specific console methods
       "no-console": "off",
-    },
+      "comma-dangle": ["error", "never"] // Disallow trailing commas
+    }
   },
   // JavaScript specific settings
   {
@@ -38,13 +39,13 @@ module.exports = [
     languageOptions: {
       parserOptions: {
         ecmaVersion: "latest",
-        sourceType: "module",
-      },
+        sourceType: "module"
+      }
     },
     rules: {
       "no-unused-vars": "warn",
       "no-console": ["warn", { allow: ["warn", "error"] }],
-      "prefer-const": "error", // Suggest using const if a variable is not reassigned
-    },
-  },
+      "prefer-const": "error" // Suggest using const if a variable is not reassigned
+    }
+  }
 ];

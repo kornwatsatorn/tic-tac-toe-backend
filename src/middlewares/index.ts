@@ -8,7 +8,7 @@ import { errorResponse } from "@/utils/responseHandler";
 export const requireAccessToken = (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   // Get token from headers
   const authHeader = req.headers["authorization"];
@@ -36,7 +36,7 @@ export const requireAccessToken = (
 export const requireAccessTokenRefresh = (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   // Get token from headers
   const authHeader = req.headers["authorization"];

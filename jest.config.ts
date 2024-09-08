@@ -5,15 +5,15 @@ const config: Config = {
   testPathIgnorePatterns: ["/node_modules/"], // Ignore node_modules
   moduleFileExtensions: ["js", "jsx", "ts", "tsx"], // File extensions to test
   transform: {
-    "^.+\\.[tj]sx?$": "ts-jest", // Use ts-jest for both JS and TS files
+    "^.+\\.[tj]sx?$": "ts-jest" // Use ts-jest for both JS and TS files
   },
   globals: {
     "ts-jest": {
-      tsconfig: "tsconfig.json", // Use your TypeScript configuration
-    },
+      tsconfig: "tsconfig.json" // Use your TypeScript configuration
+    }
   },
   moduleDirectories: ["node_modules", "src"], // Allow Jest to find modules in these directories
-  preset: "ts-jest", // Add this line to specify ts-jest as the preset
+  preset: "ts-jest" // Add this line to specify ts-jest as the preset
 };
 
 export default config;

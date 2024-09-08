@@ -4,7 +4,7 @@ import {
   signInUser,
   refreshAccessToken,
   getProfile,
-  updateProfile,
+  updateProfile
 } from "@/services/user.service";
 import { successResponse, errorResponse } from "@/utils/responseHandler";
 

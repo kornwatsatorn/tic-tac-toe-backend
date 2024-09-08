@@ -19,7 +19,7 @@ export const registerUser = async (userData: IUser) => {
     // Create a new user
     const newUser = new User({
       email,
-      type,
+      type
     });
 
     // Hash password if type is 'email'
@@ -75,7 +75,7 @@ export const refreshAccessToken = async (user: IUser | undefined) => {
   try {
     // Find the user by ID and refresh token
     const find = await User.findOne({
-      _id: user?._id,
+      _id: user?._id
     });
 
     if (!find) {
@@ -97,7 +97,7 @@ export const refreshAccessToken = async (user: IUser | undefined) => {
 export const getProfile = async (user: IUser | undefined) => {
   try {
     const find = await User.findOne({
-      _id: user?._id,
+      _id: user?._id
     });
 
     if (!find) {
@@ -119,14 +119,14 @@ export const getProfile = async (user: IUser | undefined) => {
 export const updateProfile = async (
   user: IUser | undefined,
   displayName: string | undefined,
-  displayImage: string | undefined,
+  displayImage: string | undefined
 ) => {
   try {
     if (displayName === undefined && displayImage === undefined) {
       throw new Error("User not update data");
     }
     const find = await User.findOne({
-      _id: user?._id,
+      _id: user?._id
     });
 
     if (!find) {
@@ -159,11 +159,11 @@ const getUserAccessToken = (userData: IUser) => {
   const { password, ...userWithoutPassword } = userData.toObject();
 
   const accessToken = jwt.sign(userWithoutPassword, config.secretKey, {
-    expiresIn: config.expiresIn,
+    expiresIn: config.expiresIn
   });
 
   const refreshToken = jwt.sign(userWithoutPassword, config.secretKeyRefresh, {
-    expiresIn: config.expiresInRefresh,
+    expiresIn: config.expiresInRefresh
   });
   return { user: userWithoutPassword, accessToken, refreshToken };
 };
