@@ -17,7 +17,6 @@ on:
 jobs:
   code-check:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/develop' # Run only on develop branch
 
     steps:
       - name: Check out code
