@@ -70,7 +70,7 @@ export const handleUpdateProfile = async (req: Request, res: Response) => {
     const user = await updateProfile(
       req.user,
       req.body.displayName ?? undefined,
-      req.body.displayImage ?? undefined,
+      req.body.displayImage ?? undefined
     );
     successResponse(res, "Update profile success", user);
   } catch (error) {
