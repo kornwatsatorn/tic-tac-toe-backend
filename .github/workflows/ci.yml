@@ -46,13 +46,6 @@ jobs:
     needs: code-check
     if: github.ref != 'refs/heads/develop' # Run on all branches except develop
 
-    env:
-      PROJECT_NAME: "tic-tac-toe-api" # Change this to your project name
-      BRANCH_NAME: ${{ github.ref_name }} # Use the branch name
-      IMAGE_NAME: ${{ env.PROJECT_NAME }}-${{ env.BRANCH_NAME }}
-      COMMIT_ID: ${{ github.sha }}
-      ENV: ${{ env.BRANCH_NAME }}
-
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -69,11 +62,20 @@ jobs:
       - name: Run tests
         run: yarn test
 
+      # Step to set environment variables
+      - name: Set environment variables
+        id: set-env
+        run: |
+          echo "PROJECT_NAME=tic-tac-toe-api" >> $GITHUB_ENV
+          echo "BRANCH_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
+          echo "IMAGE_NAME=${{ github.repository }}-${GITHUB_REF##*/}" >> $GITHUB_ENV
+          echo "COMMIT_ID=${GITHUB_SHA}" >> $GITHUB_ENV
+
       # Step to create version.txt file in the public directory if it exists
       - name: Create version.txt with commit ID in public directory
         run: |
           if [ -d "public" ]; then
-            echo "${{ env.COMMIT_ID }}" > public/version.txt
+            echo "${COMMIT_ID}" > public/version.txt
           else
             echo "public directory does not exist, skipping version.txt creation."
           fi
