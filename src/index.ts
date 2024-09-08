@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import routes from "@/routes";
 import appConfig from "@/config/app";
 import { successResponse } from "@/utils/responseHandler";
+import { notFoundHandler } from "@/middlewares/notFoundMiddleware";
 
 const app = express();
 
@@ -20,6 +21,8 @@ app.use("/api", routes);
 
 // Health Check Endpoint
 app.get("/health", (req, res) => successResponse(res, "Server is healthy"));
+
+app.use(notFoundHandler);
 
 app.listen(appConfig.port, () => {
   console.log(`Server is running on http://localhost:${appConfig.port}`);

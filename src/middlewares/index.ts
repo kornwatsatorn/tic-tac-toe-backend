@@ -4,6 +4,7 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { IUser } from "@/types/user";
 import config from "@/config/app";
+import { errorResponse } from "@/utils/responseHandler";
 
 // Middleware to verify access token
 export const requireAccessToken = (
@@ -16,19 +17,15 @@ export const requireAccessToken = (
   const token = authHeader && authHeader.split(" ")[1]; // Extract token from 'Bearer <token>'
 
   if (!token) {
-    return res.status(401).json({
-      success: false,
-      message: "Access token is missing or invalid",
-    });
+    errorResponse(res, "Access token is missing or invalid", 401);
+    return;
   }
 
   // Verify token
   jwt.verify(token, config.secretKey, (err, decoded) => {
     if (err) {
-      return res.status(403).json({
-        success: false,
-        message: "Invalid or expired access token",
-      });
+      errorResponse(res, "Invalid or expired access token", 403);
+      return;
     }
 
     // Attach user info from token to request
@@ -48,19 +45,15 @@ export const requireAccessTokenRefresh = (
   const token = authHeader && authHeader.split(" ")[1]; // Extract token from 'Bearer <token>'
 
   if (!token) {
-    return res.status(401).json({
-      success: false,
-      message: "Access token is missing or invalid",
-    });
+    errorResponse(res, "Access token is missing or invalid", 401);
+    return;
   }
 
   // Verify token
   jwt.verify(token, config.secretKeyRefresh, (err, decoded) => {
     if (err) {
-      return res.status(403).json({
-        success: false,
-        message: "Invalid or expired access token",
-      });
+      errorResponse(res, "Invalid or expired access token", 403);
+      return;
     }
 
     // Attach user info from token to request

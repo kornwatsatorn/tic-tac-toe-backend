@@ -13,7 +13,7 @@ src/app.ts              # App entry point
 └─── src/routes         # Routes for all the endpoints
 └─── src/services       # Business logic
 └─── src/types          # Type
-└─── src/helpers        # Utility function
+└─── src/utils          # Utility function
 ```
 
 #### Start App
