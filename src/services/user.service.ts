@@ -1,5 +1,3 @@
-// src/services/user.service.ts
-
 import bcrypt from "bcryptjs";
 import User from "@/models/user.model";
 import type { IUser } from "@/types/user";
