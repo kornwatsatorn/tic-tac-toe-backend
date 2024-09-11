@@ -1,6 +1,6 @@
 import express from "express";
-import { handleJoinSse } from "@/controllers/sse.controller";
-import { requireAccessToken } from "@/middlewares";
+import { handleJoinSse } from "../controllers/sse.controller";
+import { requireAccessToken } from "../middlewares";
 
 const router = express.Router();
 

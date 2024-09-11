@@ -1,14 +1,14 @@
-import User from "@/models/user.model";
-import type { IUser } from "@/types/user";
-import Match from "@/models/match.model";
-import Queue from "@/models/queue.model";
-import { EQueueStatus } from "@/enum/queue.enum";
-import { botTurn, checkWin, getTurnInMatch } from "@/utils/match";
-import type { IMatch, IMatchReplay } from "@/types/match";
+import User from "../models/user.model";
+import type { IUser } from "../types/user";
+import Match from "../models/match.model";
+import Queue from "../models/queue.model";
+import { EQueueStatus } from "../enum/queue.enum";
+import { botTurn, checkWin, getTurnInMatch } from "../utils/match";
+import type { IMatch, IMatchReplay } from "../types/match";
 import { type FilterQuery, Types } from "mongoose";
 import { notifyMatchUpdate } from "./sse.service";
-import { EMatchType, ESseStatus } from "@/enum/match.enum";
-import { botId } from "@/utils/bot";
+import { EMatchType, ESseStatus } from "../enum/match.enum";
+import { botId } from "../utils/bot";
 
 export const findMatch = async (user: IUser | undefined, type: EMatchType) => {
   try {

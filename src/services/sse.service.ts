@@ -1,10 +1,10 @@
-import User from "@/models/user.model";
+import User from "../models/user.model";
 import type { Request, Response } from "express";
-import Match from "@/models/match.model";
-import { EQueueStatus } from "@/enum/queue.enum";
-import { getTurnInMatch } from "@/utils/match";
-import { ESseStatus } from "@/enum/match.enum";
-import { botId } from "@/utils/bot";
+import Match from "../models/match.model";
+import { EQueueStatus } from "../enum/queue.enum";
+import { getTurnInMatch } from "../utils/match";
+import { ESseStatus } from "../enum/match.enum";
+import { botId } from "../utils/bot";
 
 // Store active SSE connections
 const clients: Record<string, Response[]> = {};

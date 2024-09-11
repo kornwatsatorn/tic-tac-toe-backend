@@ -1,8 +1,8 @@
-import type { IAdmin } from "./../types/admin.d";
+import type { IAdmin } from "../types/admin.d";
 import bcrypt from "bcryptjs";
-import Admin from "@/models/admin.model";
+import Admin from "../models/admin.model";
 import jwt from "jsonwebtoken";
-import config from "@/config/app";
+import config from "../config/app";
 
 export const registerAdmin = async (adminData: IAdmin) => {
   try {

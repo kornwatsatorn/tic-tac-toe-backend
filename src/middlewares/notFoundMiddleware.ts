@@ -1,4 +1,4 @@
-import { errorResponse } from "@/utils/responseHandler";
+import { errorResponse } from "../utils/responseHandler";
 import type { Response, Request } from "express";
 
 // Middleware to handle unmatched routes (404 Not Found)

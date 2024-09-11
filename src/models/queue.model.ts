@@ -1,5 +1,5 @@
-import { EQueueStatus } from "@/enum/queue.enum";
-import type { IQueue } from "@/types/queue";
+import { EQueueStatus } from "../enum/queue.enum";
+import type { IQueue } from "../types/queue";
 import mongoose, { Schema } from "mongoose";
 
 const queueSchema: Schema = new Schema<IQueue>(

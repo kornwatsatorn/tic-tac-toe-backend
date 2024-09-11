@@ -1,8 +1,8 @@
 import express from "express";
-import userRoutes from "@/routes/user";
-import matchRoutes from "@/routes/match";
-import sseRoutes from "@/routes/sse";
-import adminRoutes from "@/routes/admin";
+import userRoutes from "./user";
+import matchRoutes from "./match";
+import sseRoutes from "./sse";
+import adminRoutes from "./admin";
 
 const router = express.Router();
 

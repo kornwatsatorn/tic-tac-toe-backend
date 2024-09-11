@@ -1,8 +1,8 @@
 // src/models/userModel.ts
 
-import { EMatchType } from "@/enum/match.enum";
-import { EQueueStatus } from "@/enum/queue.enum";
-import type { IMatch } from "@/types/match";
+import { EMatchType } from "../enum/match.enum";
+import { EQueueStatus } from "../enum/queue.enum";
+import type { IMatch } from "../types/match";
 import mongoose, { Schema } from "mongoose";
 import { ReplaySchema } from "./matchReplay.model";
 

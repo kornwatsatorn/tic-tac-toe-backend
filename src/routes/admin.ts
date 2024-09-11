@@ -1,5 +1,5 @@
 import express from "express";
-import { handelLogin, handleRegister } from "@/controllers/admin.controller";
+import { handelLogin, handleRegister } from "../controllers/admin.controller";
 
 const router = express.Router();
 

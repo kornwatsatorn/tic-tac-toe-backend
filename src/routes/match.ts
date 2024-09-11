@@ -5,9 +5,9 @@ import {
   handleInit,
   handleLeaveMatch,
   handleMatchList
-} from "@/controllers/match.controller";
+} from "../controllers/match.controller";
 
-import { requireAccessToken, requireAccessTokenAdmin } from "@/middlewares";
+import { requireAccessToken, requireAccessTokenAdmin } from "../middlewares";
 
 const router = express.Router();
 

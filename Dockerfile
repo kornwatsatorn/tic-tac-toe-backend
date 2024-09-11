@@ -16,6 +16,8 @@ COPY . .
 # Build the TypeScript code
 RUN yarn build
 
+RUN ls -la dist/src
+
 # Expose the desired port (e.g., 3000)
 EXPOSE 3000
 

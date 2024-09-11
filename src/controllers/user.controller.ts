@@ -7,9 +7,9 @@ import {
   getProfile,
   updateProfile,
   getUserList
-} from "@/services/user.service";
-import { successResponse, errorResponse } from "@/utils/responseHandler";
-import type { IUser } from "@/types/user";
+} from "../services/user.service";
+import { successResponse, errorResponse } from "../utils/responseHandler";
+import type { IUser } from "../types/user";
 import type { FilterQuery } from "mongoose";
 
 export const handleRegister = async (req: Request, res: Response) => {

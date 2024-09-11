@@ -1,8 +1,8 @@
 import bcrypt from "bcryptjs";
-import User from "@/models/user.model";
-import type { IUser } from "@/types/user";
+import User from "../models/user.model";
+import type { IUser } from "../types/user";
 import jwt from "jsonwebtoken";
-import config from "@/config/app";
+import config from "../config/app";
 import type { FilterQuery } from "mongoose";
 
 export const registerUser = async (userData: IUser) => {

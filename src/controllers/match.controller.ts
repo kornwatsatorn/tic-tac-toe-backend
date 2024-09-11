@@ -5,12 +5,12 @@ import {
   initToGetMatch,
   leaveMatch,
   getMatchList
-} from "@/services/match.service";
-import { errorResponse, successResponse } from "@/utils/responseHandler";
-import { EMatchType } from "@/enum/match.enum";
-import { EQueueStatus } from "@/enum/queue.enum";
+} from "../services/match.service";
+import { errorResponse, successResponse } from "../utils/responseHandler";
+import { EMatchType } from "../enum/match.enum";
+import { EQueueStatus } from "../enum/queue.enum";
 import type { FilterQuery } from "mongoose";
-import type { IMatch } from "@/types/match";
+import type { IMatch } from "../types/match";
 
 export const handleJoinMatch = async (req: Request, res: Response) => {
   try {

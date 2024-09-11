@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { createSSEChannel } from "@/services/sse.service";
+import { createSSEChannel } from "../services/sse.service";
 
 // Controller function to handle joining SSE for a specific match
 export const handleJoinSse = async (req: Request, res: Response) => {

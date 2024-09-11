@@ -7,13 +7,13 @@ import {
   handleUpdateProfile,
   handleUserList,
   handleLeaderBoard
-} from "@/controllers/user.controller";
+} from "../controllers/user.controller";
 
 import {
   requireAccessToken,
   requireAccessTokenAdmin,
   requireAccessTokenRefresh
-} from "@/middlewares";
+} from "../middlewares";
 
 const router = express.Router();
 

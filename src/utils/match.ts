@@ -1,9 +1,9 @@
 import type { ObjectId } from "mongodb";
-import type { IMatch, IMatchReplay } from "@/types/match";
+import type { IMatch, IMatchReplay } from "../types/match";
 import { type Types } from "mongoose";
 import { botId } from "./bot";
-import MatchReplay from "@/models/matchReplay.model";
-import Match from "@/models/match.model";
+import MatchReplay from "../models/matchReplay.model";
+import Match from "../models/match.model";
 
 export const getTurnInMatch = (_match: IMatch): Types.ObjectId => {
   let currentTurn;

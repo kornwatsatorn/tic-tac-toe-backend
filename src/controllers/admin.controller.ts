@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import { registerAdmin, signInAdmin } from "@/services/admin.service";
-import { successResponse, errorResponse } from "@/utils/responseHandler";
+import { registerAdmin, signInAdmin } from "../services/admin.service";
+import { successResponse, errorResponse } from "../utils/responseHandler";
 
 export const handleRegister = async (req: Request, res: Response) => {
   try {

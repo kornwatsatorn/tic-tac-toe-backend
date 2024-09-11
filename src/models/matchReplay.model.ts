@@ -1,4 +1,4 @@
-import type { IMatchReplay } from "@/types/match";
+import type { IMatchReplay } from "../types/match";
 import mongoose, { Schema } from "mongoose";
 
 export const ReplaySchema = new Schema<IMatchReplay>({

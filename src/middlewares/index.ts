@@ -1,9 +1,9 @@
 import type { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import type { IUser } from "@/types/user";
-import config from "@/config/app";
-import { errorResponse } from "@/utils/responseHandler";
-import type { IAdmin } from "@/types/admin";
+import type { IUser } from "../types/user";
+import config from "../config/app";
+import { errorResponse } from "../utils/responseHandler";
+import type { IAdmin } from "../types/admin";
 
 // Middleware to verify access token
 export const requireAccessToken = (
