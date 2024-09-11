@@ -6,5 +6,7 @@ export enum EMatchType {
 export enum ESseStatus {
   START = "START",
   UPDATE = "UPDATE",
-  END = "END"
+  BOT = "BOT",
+  END = "END",
+  CANCEL = "CANCEL"
 }

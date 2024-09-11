@@ -19,6 +19,7 @@ const userSchema: Schema = new Schema<IUser>(
     },
     displayImage: { type: String, default: null },
     point: { type: Number, default: 0 },
+    botWinStack: { type: Number, default: 0 },
     type: { type: String, enum: ["email", "social"], required: true }
   },
   { timestamps: true }

@@ -7,5 +7,11 @@ export interface IUser extends Document {
   displayName?: string;
   displayImage?: string;
   point: number;
+  botWinStack?: number;
   type: "email" | "social";
+}
+
+export interface IUserFind {
+  _id: Types.ObjectId;
+  point?: unknown;
 }
