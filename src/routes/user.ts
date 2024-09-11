@@ -4,10 +4,15 @@ import {
   handleRefreshToken,
   handleRegister,
   handleGetProfile,
-  handleUpdateProfile
+  handleUpdateProfile,
+  handleUserList
 } from "@/controllers/user.controller";
 
-import { requireAccessToken, requireAccessTokenRefresh } from "@/middlewares";
+import {
+  requireAccessToken,
+  requireAccessTokenAdmin,
+  requireAccessTokenRefresh
+} from "@/middlewares";
 
 const router = express.Router();
 
@@ -16,5 +21,6 @@ router.post("/login", handelLogin);
 router.post("/refresh-token", requireAccessTokenRefresh, handleRefreshToken);
 router.get("/", requireAccessToken, handleGetProfile);
 router.patch("/", requireAccessToken, handleUpdateProfile);
+router.get("/list", requireAccessTokenAdmin, handleUserList);
 
 export default router;

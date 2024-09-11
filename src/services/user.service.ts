@@ -3,6 +3,7 @@ import User from "@/models/user.model";
 import type { IUser } from "@/types/user";
 import jwt from "jsonwebtoken";
 import config from "@/config/app";
+import type { FilterQuery } from "mongoose";
 
 export const registerUser = async (userData: IUser) => {
   try {
@@ -106,7 +107,7 @@ export const getProfile = async (user: IUser | undefined) => {
     if (!find) {
       throw new Error("User not found");
     }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     const { password, ...userWithoutPassword } = find.toObject();
     return userWithoutPassword;
   } catch (error) {
@@ -158,7 +159,6 @@ export const updateProfile = async (
 };
 
 const getUserAccessToken = (userData: IUser) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { password, ...userWithoutPassword } = userData.toObject();
 
   const accessToken = jwt.sign(userWithoutPassword, config.secretKey, {
@@ -169,4 +169,45 @@ const getUserAccessToken = (userData: IUser) => {
     expiresIn: config.expiresInRefresh
   });
   return { user: userWithoutPassword, accessToken, refreshToken };
+};
+
+// admin function
+export const getUserList = async (
+  page: number,
+  perPage: number,
+  filter: FilterQuery<IUser>
+) => {
+  try {
+    const _user = await User.aggregate([
+      { $match: filter }, // Filter documents based on the criteria
+      { $sort: { createdAt: -1 } }, // Specify sort criteria here if needed
+      { $skip: (page - 1) * perPage }, // Skip documents for pagination
+      { $limit: perPage }, // Limit documents per page
+      {
+        $project: {
+          id: "$_id",
+          email: "$email",
+          name: "$displayName",
+          point: "$point",
+          stack: "$botWinStack"
+        }
+      }
+    ]);
+
+    const total = await User.countDocuments(filter);
+    return {
+      data: _user,
+      total,
+      page,
+      totalPage: Math.ceil(total / perPage)
+    };
+  } catch (error) {
+    if (error instanceof Error) {
+      // Re-throw the error if it's already an instance of Error
+      throw error;
+    } else {
+      // If it's not an Error instance, create a new Error with the provided message
+      throw new Error("An unexpected error occurred.");
+    }
+  }
 };

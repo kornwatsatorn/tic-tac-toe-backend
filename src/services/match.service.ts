@@ -333,3 +333,33 @@ const checkWinAfterSelectSlot = async (_match: IMatch, user: IUser) => {
     sseStatus: ESseStatus.END
   };
 };
+
+// admin function
+export const getMatchList = async (
+  page: number,
+  perPage: number,
+  filter: FilterQuery<IMatch>
+) => {
+  try {
+    const _match = await Match.find(filter)
+      .sort()
+      .skip((page - 1) * perPage)
+      .limit(perPage);
+
+    const total = await Match.countDocuments(filter);
+    return {
+      data: _match,
+      total,
+      page,
+      totalPage: Math.ceil(total / perPage)
+    };
+  } catch (error) {
+    if (error instanceof Error) {
+      // Re-throw the error if it's already an instance of Error
+      throw error;
+    } else {
+      // If it's not an Error instance, create a new Error with the provided message
+      throw new Error("An unexpected error occurred.");
+    }
+  }
+};
