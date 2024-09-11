@@ -4,6 +4,7 @@ import Match from "@/models/match.model";
 import { EQueueStatus } from "@/enum/queue.enum";
 import { getTurnInMatch } from "@/utils/match";
 import { ESseStatus } from "@/enum/match.enum";
+import { botId } from "@/utils/bot";
 
 // Store active SSE connections
 const clients: Record<string, Response[]> = {};
@@ -90,15 +91,26 @@ export const notifyMatchUpdate = async (
     const currentTurn = getTurnInMatch(_match);
 
     // Prepare the event data in the same format as createSSEChannel
-    const eventData = { match: _match, currentTurn, message, point: {} };
+    const eventData = {
+      match: _match,
+      currentTurn,
+      message,
+      point: {},
+      stack: null
+    };
 
     if (message === ESseStatus.END) {
       const _player1 = await User.findOne({ _id: _match.player1 });
-      const _player2 = await User.findOne({ _id: _match.player2 });
+      const _player2 = !_match.player2.equals(botId)
+        ? await User.findOne({ _id: _match.player2 })
+        : null;
       eventData.point = {
         player1: _player1.point,
-        player2: _player2.point
+        player2: _player2 ? _player2.point : 0
       };
+      if (_match.player2.equals(botId)) {
+        eventData.stack = _player1.botWinStack ?? 0;
+      }
     }
 
     // Send the SSE event to all subscribed clients

@@ -4,6 +4,7 @@ import { EMatchType } from "@/enum/match.enum";
 import { EQueueStatus } from "@/enum/queue.enum";
 import type { IMatch } from "@/types/match";
 import mongoose, { Schema } from "mongoose";
+import { ReplaySchema } from "./matchReplay.model";
 
 const matchSchema: Schema = new Schema<IMatch>(
   {
@@ -12,7 +13,11 @@ const matchSchema: Schema = new Schema<IMatch>(
       ref: "User",
       required: true
     },
-    player2: { type: Schema.Types.ObjectId, ref: "User", default: null },
+    player2: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      default: null
+    },
     type: { type: String, enum: EMatchType, default: EMatchType.PLAYER },
     winner: { type: Schema.Types.ObjectId, default: null },
     point: { type: Number },
@@ -21,19 +26,7 @@ const matchSchema: Schema = new Schema<IMatch>(
       enum: EQueueStatus,
       default: EQueueStatus.W
     },
-    replay: [
-      {
-        player: {
-          type: Schema.Types.ObjectId,
-          ref: "User",
-          required: true,
-          default: null
-        },
-        slot: { type: Number, required: true },
-        created_at: { type: Date, default: new Date() },
-        remainingTime: { type: Number, required: true }
-      }
-    ]
+    replay: [ReplaySchema]
   },
   { timestamps: true }
 );
