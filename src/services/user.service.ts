@@ -6,18 +6,23 @@ import config from "@/config/app";
 
 export const registerUser = async (userData: IUser) => {
   try {
-    const { email, password, type } = userData;
+    const { email, password, type, displayName } = userData;
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       throw new Error("Email already in use");
     }
+    const existingDisplayName = await User.findOne({ displayName });
+    if (existingDisplayName) {
+      throw new Error("Display name already in use");
+    }
 
     // Create a new user
     const newUser = new User({
       email,
-      type
+      type,
+      displayName
     });
 
     // Hash password if type is 'email'
