@@ -15,6 +15,12 @@ const userSchema: Schema = new Schema<IUser>(
       unique: true,
       default: function () {
         return `TTC_${new Date().getTime()}`;
+      },
+      validate: {
+        validator: function (v) {
+          return v.trim().length > 0; // Ensure it's not empty after trim
+        },
+        message: "Display name should not be blank after trimming whitespace."
       }
     },
     displayImage: { type: String, default: null },
