@@ -8,7 +8,7 @@ const appConfig = {
   secretKey: process.env.JWT_SECRET || "my-secret-key",
   secretKeyRefresh: process.env.JWT_REFRESH_SECRET || "my-secret-key",
   expiresIn: process.env.JWT_EXPIRES_IN || "1h",
-  expiresInRefresh: process.env.JWT_REFRESH_EXPIRES_IN || "7h",
+  expiresInRefresh: process.env.JWT_REFRESH_EXPIRES_IN || "7h"
 };
 
 export default appConfig;

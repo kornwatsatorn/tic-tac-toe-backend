@@ -2,10 +2,10 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "commonjs",
-    "rootDir": "src",
-    "baseUrl": "src",
+    "rootDir": "./",
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["./src/*"]
     },
     "outDir": "dist",
     "esModuleInterop": true,
@@ -13,6 +13,6 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "jest.config.ts"],
   "exclude": ["node_modules"]
 }

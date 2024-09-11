@@ -1,12 +1,10 @@
-// src/routes/auth.ts
-
 import express from "express";
 import {
   handelLogin,
   handleRefreshToken,
   handleRegister,
   handleGetProfile,
-  handleUpdateProfile,
+  handleUpdateProfile
 } from "@/controllers/user.controller";
 
 import { requireAccessToken, requireAccessTokenRefresh } from "@/middlewares";
