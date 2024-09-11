@@ -87,6 +87,26 @@ export const handleUpdateProfile = async (req: Request, res: Response) => {
   }
 };
 
+export const handleLeaderBoard = async (req: Request, res: Response) => {
+  try {
+    const userList = await getUserList(
+      1,
+      10,
+      { point: { $ne: 0 } },
+      { point: -1 }
+    );
+
+    successResponse(res, "Get leader board success", userList);
+  } catch (error) {
+    if (error instanceof Error) {
+      errorResponse(res, error.message);
+    } else {
+      // Handle unexpected errors that are not instances of Error
+      errorResponse(res, "An unexpected error occurred.");
+    }
+  }
+};
+
 export const handleUserList = async (req: Request, res: Response) => {
   try {
     const { search, page = 1, perPage = 10 } = req.query;
@@ -119,7 +139,8 @@ export const handleUserList = async (req: Request, res: Response) => {
     const userList = await getUserList(
       parseInt(page.toString()),
       parseInt(perPage.toString()),
-      filter
+      filter,
+      { createdAt: -1 }
     );
 
     successResponse(res, "Get user list success", userList);

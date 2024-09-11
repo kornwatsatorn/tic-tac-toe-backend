@@ -175,12 +175,13 @@ const getUserAccessToken = (userData: IUser) => {
 export const getUserList = async (
   page: number,
   perPage: number,
-  filter: FilterQuery<IUser>
+  filter: FilterQuery<IUser>,
+  sort: any
 ) => {
   try {
     const _user = await User.aggregate([
       { $match: filter }, // Filter documents based on the criteria
-      { $sort: { createdAt: -1 } }, // Specify sort criteria here if needed
+      { $sort: sort }, // Specify sort criteria here if needed
       { $skip: (page - 1) * perPage }, // Skip documents for pagination
       { $limit: perPage }, // Limit documents per page
       {
@@ -189,7 +190,9 @@ export const getUserList = async (
           email: "$email",
           name: "$displayName",
           point: "$point",
-          stack: "$botWinStack"
+          stack: "$botWinStack",
+          createdAt: "$createdAt",
+          updatedAt: "$updatedAt"
         }
       }
     ]);

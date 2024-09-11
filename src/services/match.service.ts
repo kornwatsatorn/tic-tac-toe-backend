@@ -342,7 +342,7 @@ export const getMatchList = async (
 ) => {
   try {
     const _match = await Match.find(filter)
-      .sort()
+      .sort({ createdAt: -1 })
       .skip((page - 1) * perPage)
       .limit(perPage);
 

@@ -5,7 +5,8 @@ import {
   handleRegister,
   handleGetProfile,
   handleUpdateProfile,
-  handleUserList
+  handleUserList,
+  handleLeaderBoard
 } from "@/controllers/user.controller";
 
 import {
@@ -22,5 +23,6 @@ router.post("/refresh-token", requireAccessTokenRefresh, handleRefreshToken);
 router.get("/", requireAccessToken, handleGetProfile);
 router.patch("/", requireAccessToken, handleUpdateProfile);
 router.get("/list", requireAccessTokenAdmin, handleUserList);
+router.get("/leader-board", handleLeaderBoard);
 
 export default router;
