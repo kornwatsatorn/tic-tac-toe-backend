@@ -107,7 +107,7 @@ export const botTurn = (_match: IMatch) => {
   }
 
   // 5. Take opposite corner if opponent is in a corner
-  const corners = [1, 3, 7, 9];
+  const corners = shuffleArray([1, 3, 7, 9]);
   const oppositeCorners = { 1: 9, 3: 7, 7: 3, 9: 1 };
   for (const corner of corners) {
     if (
@@ -176,4 +176,8 @@ const createNewReplay = (
     remainingTime: 0
   });
   return _replay;
+};
+
+const shuffleArray = (array: any[]) => {
+  return array.sort(() => Math.random() - 0.5);
 };
